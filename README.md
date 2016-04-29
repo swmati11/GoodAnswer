@@ -7,3 +7,6 @@ GoodAnswer is a free and Open Source forum script :)
 3. Create a new database
 4. Edit ga_core/ga_main_core.php
 5. Host this forum ;)
+
+#Demo
+Demo site: 
