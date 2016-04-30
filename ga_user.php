@@ -1,11 +1,30 @@
 <?php
-require './core/main-core.php';
+require './ga-core/main-core.php';
 try {
-  $connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-  $user_info = $connection->query('SELECT * FROM uzytkownicy WHERE id=$_GET["id"]');
-  echo $user_info['nick'];
+  $connection = new mysqli(GA_DB_HOST, GA_DB_USER, GA_DB_PASS, GA_DB_NAME);
+  $user_info = $connection->query('SELECT * FROM uzytkownicy WHERE user=$_GET["id"]');
+  //$user = $user_info->num_rows;
+  if($user_info<1)
+  {
+	 // header('Location: ./index.php');
+	  //exit();
+  }
+  else
+  {
+	  $user_infos = $user_info->fetch_assoc();
+	  
+	  echo '
+	  <!DOCTYPE html>
+	  <html>
+	  <head>
+		<title>$connection->query("SELECT title FROM metas"); </title>
+	  </head>
+	  </html>
+	  ';
+	  
+  }
 } catch (Exception $e) {
-  echo 'Error at line'.__LINE__.' file '.__FILE__.'!';
+  echo 'Wystąpił błąd z serwerem w lini'. __LINE__ .' pliku '. __FILE__ .'!';
 }
 
 ?>
